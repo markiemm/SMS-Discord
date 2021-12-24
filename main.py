@@ -41,15 +41,25 @@ async def send(message, tonumber, *, messagebody=""):
 
     }
 
-    data = {
+    data = json.dumps({
         "from" : config["API"]["FROM_NUMBER"],
         "to" : str(tonumber),
         "text" : str(messagebody)
-    }
+    })
 
     response = requests.post('https://api.telnyx.com/v2/messages', headers=headers, data=data)
-
-    await message.channel.send(response.text)
+    
+    await message.channel.send("Sending message")
+    
+    try:
+        print("From: " + config["API"]["FROM_NUMBER"])
+        print("To: " + str(tonumber))
+        print("Message: " + str(messagebody))
+        print(response.text)
+        await message.channel.send("Your message ``" + str(messagebody) + "`` has been sent to ``" + str(tonumber) + "`` from this number ``" + config["API"]["FROM_NUMBER"] + "`` :thumbsup:")
+    except:
+        await message.channel.send("Could not send SMS message")
+    
 
 
 
