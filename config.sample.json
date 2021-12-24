@@ -7,9 +7,5 @@
     "API" : {
        "TELNYX_API_KEY" : "",
        "FROM_NUMBER" : ""
-    },
-
-    "PERMISSIONS" : {
-        "Allowed" : [""]
     }
 }
